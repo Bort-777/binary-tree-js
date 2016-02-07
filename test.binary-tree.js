@@ -41,7 +41,7 @@ var expectedBt = {
 		}
 	}
 };
-
+ 
 describe('BinaryTree', () => {
 	describe('#constructor', () => {
 		it('assigns null to root', () => {
@@ -83,7 +83,7 @@ describe('BinaryTree', () => {
 		});
 	});
 
-	describe('#insert2(data)', () => {
+	describe('re #insert(data)', () => {
 		var bt;
 
 		beforeEach(() => {
