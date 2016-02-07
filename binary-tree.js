@@ -12,139 +12,128 @@ class BinaryTree {
 				this.root = new Node(data, null, null);
 				return;
 			}
-		
-		var test = 1;
-		var tmp = this.root;
+		if ( this.contains(data) === false ) {	
+			var isFound = false;
+			var iter = this.root;
+			while (isFound === false)
+			{
+				if (data<iter.data)
+					if (iter.left === null)
+					{	
+						iter.left = new Node(data, null, null);
+						isFound = true;
 
-		while (test==1)
-		{
-			if (data<tmp.data)
-				if (tmp.left==null)
-				{	
-					tmp.left = new Node(data, null, null);
-					test = 0;
-
-				}
-				else tmp=tmp.left;
-			else 
-				if (tmp.right==null)
-				{
-					tmp.right = new Node(data, null, null);
-					test = 0;
-				}
-				else tmp=tmp.right;
-
+					}
+					else iter=iter.left;
+				else 
+					if (iter.right === null)
+					{
+						iter.right = new Node(data, null, null);
+						isFound = true;
+					}
+					else iter = iter.right;
+			}
 		}
 	}
 
-	contains(data) {
-		
-		
-		var test = 1;
-		var tmp = this.root;
-
-		while (test==1 && tmp!=null)
-		{	if (tmp.data == data)
+	contains(data) {	
+		var iter = this.root;
+		while (iter!=null) {
+			if (iter.data == data)
 				return true;
-			if (data<tmp.data)
-				tmp=tmp.left;
-			else tmp=tmp.right;
-			
+			else if (data<iter.data)
+					iter=iter.left;
+				else iter=iter.right;
 		}
 		return false;
 	}
 
 	remove(data) {
 		var test = 1;
-		var ptmp = null;
-		var tmp = this.root;
+		var piter = null;
+		var iter = this.root;
 
-		if (tmp.data == data)
+		if (iter.data == data)
 			{
 				this.root=null;
 				return true;
 			}
-		ptmp=tmp;
-			if (data<tmp.data)
-				tmp=tmp.left;
-			else tmp=tmp.right;
+		piter=iter;
+			if (data<iter.data)
+				iter=iter.left;
+			else iter=iter.right;
 
-		while (test==1 && tmp!=null)
-		{	if (tmp.data == data)
+		while (test==1 && iter!=null)
+		{	if (iter.data == data)
 				
-			{if (tmp.left==null && tmp.right==null)
+			{if (iter.left==null && iter.right==null)
 				{
-					if (data<ptmp.data)
-					ptmp.left=null;
-					else ptmp.right=null;
+					if (data<piter.data)
+					piter.left=null;
+					else piter.right=null;
 					return true;
 				}
 
-				if (tmp.left!=null && tmp.right==null)
+				if (iter.left!=null && iter.right==null)
 				{
-					if (data<ptmp.data)
-					ptmp.left=tmp.left;
-					else ptmp.right=tmp.left;
+					if (data<piter.data)
+					piter.left=iter.left;
+					else piter.right=iter.left;
 					return true;
 				}
-				if (tmp.left==null && tmp.right!=null)
+				if (iter.left==null && iter.right!=null)
 				{
-					if (data<ptmp.data)
-					ptmp.left=tmp.right;
-					else ptmp.right=tmp.right;
+					if (data<piter.data)
+					piter.left=iter.right;
+					else piter.right=iter.right;
 					return true;
 				}
-				if (tmp.left!=null && tmp.right!=null)
+				if (iter.left!=null && iter.right!=null)
 				{
-					if (tmp.right.left==null)
-						tmp.right.left=tmp.left;
+					if (iter.right.left==null)
+						iter.right.left=iter.left;
 					
 
-					if (data<ptmp.data)
-					ptmp.left=tmp.tmp.right;
-					else ptmp.right=tmp.right;
+					if (data<piter.data)
+					piter.left=iter.iter.right;
+					else piter.right=iter.right;
 					return true;
 				}
 			}
-			ptmp=tmp;
-			if (data<tmp.data)
-				tmp=tmp.left;
-			else tmp=tmp.right;
+			piter=iter;
+			if (data<iter.data)
+				iter=iter.left;
+			else iter=iter.right;
 			
 		}
 		return false;
 	}
 
-	size() {
-		
-		var tmp = this.root;
-		if(tmp == null)
+	size() {	
+		var nood = this.root;
+		if(nood == null)
 			return 0;
-		return this.children(tmp)+1;
+		return this.childrenSize(nood)+1;
 	}
 
-	children(tmp) {
+	childrenSize(nood) {
 		var length = 0;
-		if(tmp != null) {
-
-			if (tmp.left != null) {
+		if(nood !== null) {
+			if (nood.left !== null) {
 				length++;
-				length += this.children(tmp.left);
+				length += this.childrenSize(nood.left);
 			}
-
-			if (tmp.right != null) {
+			if (nood.right !== null) {
 				length++;
-				length += this.children(tmp.right);
+				length += this.childrenSize(nood.right);
 			}
 		}
-
 		return length;
-
 	}
 
 	isEmpty() {
-		var tmp = this.root;
-		if(tmp == null)
+		var nood = this.root;
+		if(nood === null)
 			return true;
 		else return false;
 		
