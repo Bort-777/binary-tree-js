@@ -83,6 +83,27 @@ describe('BinaryTree', () => {
 		});
 	});
 
+	describe('#insert2(data)', () => {
+		var bt;
+
+		beforeEach(() => {
+			bt = new BinaryTree();
+
+			bt.insert(13);
+			bt.insert(13);
+			bt.insert(10);
+			bt.insert(15);
+
+		});
+
+		it('creates new node with passed data and inserts correct', () => {
+			bt.root.data.should.equal(13);
+			bt.root.left.data.should.equal(10);
+			bt.root.right.data.should.equal(15);
+			
+		});
+	});
+
 	describe('#contains(data)', () => {
 		var bt;
 
