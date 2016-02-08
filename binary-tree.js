@@ -50,15 +50,15 @@ class BinaryTree {
 
 	remove(data) {
 		var test = 1;
-		var piter = null;
 		var iter = this.root;
+		var parent = null;
 
 		if (iter.data == data)
 			{
 				this.root=null;
 				return true;
 			}
-		piter=iter;
+		parent=iter;
 			if (data<iter.data)
 				iter=iter.left;
 			else iter=iter.right;
@@ -68,24 +68,24 @@ class BinaryTree {
 				
 			{if (iter.left==null && iter.right==null)
 				{
-					if (data<piter.data)
-					piter.left=null;
-					else piter.right=null;
+					if (data<parent.data)
+					parent.left=null;
+					else parent.right=null;
 					return true;
 				}
 
 				if (iter.left!=null && iter.right==null)
 				{
-					if (data<piter.data)
-					piter.left=iter.left;
-					else piter.right=iter.left;
+					if (data<parent.data)
+					parent.left=iter.left;
+					else parent.right=iter.left;
 					return true;
 				}
 				if (iter.left==null && iter.right!=null)
 				{
-					if (data<piter.data)
-					piter.left=iter.right;
-					else piter.right=iter.right;
+					if (data<parent.data)
+					parent.left=iter.right;
+					else parent.right=iter.right;
 					return true;
 				}
 				if (iter.left!=null && iter.right!=null)
@@ -94,13 +94,13 @@ class BinaryTree {
 						iter.right.left=iter.left;
 					
 
-					if (data<piter.data)
-					piter.left=iter.iter.right;
-					else piter.right=iter.right;
+					if (data<parent.data)
+					parent.left=iter.iter.right;
+					else parent.right=iter.right;
 					return true;
 				}
 			}
-			piter=iter;
+			parent=iter;
 			if (data<iter.data)
 				iter=iter.left;
 			else iter=iter.right;
