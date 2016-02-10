@@ -7,31 +7,28 @@ class BinaryTree {
 	}
 
 	insert(data) {
-		if (this.root == null)
-			{
+		if (this.root === null)	{
 				this.root = new Node(data, null, null);
 				return;
 			}
-		if ( this.contains(data) === false ) {	
+		if (this.contains(data) === false) {	
 			var isFound = false;
 			var iter = this.root;
-			while (isFound === false)
-			{
-				if (data<iter.data)
-					if (iter.left === null)
-					{	
+			while (!isFound) {
+				if (data < iter.data)
+					if (iter.left === null)	{	
 						iter.left = new Node(data, null, null);
 						isFound = true;
 
 					}
 					else iter=iter.left;
-				else 
-					if (iter.right === null)
-					{
+				else {
+					if (iter.right === null) {
 						iter.right = new Node(data, null, null);
 						isFound = true;
 					}
 					else iter = iter.right;
+				}
 			}
 		}
 	}
@@ -39,8 +36,9 @@ class BinaryTree {
 	contains(data) {	
 		var iter = this.root;
 		while (iter!=null) {
-			if (iter.data == data)
-				return true;
+			if (iter.data === data)	{
+					return true;
+				}
 			else if (data<iter.data)
 					iter=iter.left;
 				else iter=iter.right;
@@ -49,11 +47,11 @@ class BinaryTree {
 	}
 
 	remove(data) {
-		var test = 1;
+		
 		var iter = this.root;
 		var parent = null;
 
-		if (iter.data == data)
+		if (iter.data === data)
 			{
 				this.root=null;
 				return true;
@@ -63,7 +61,7 @@ class BinaryTree {
 				iter=iter.left;
 			else iter=iter.right;
 
-		while (test==1 && iter!=null)
+		while (iter != null)
 		{	if (iter.data == data)
 				
 			{if (iter.left==null && iter.right==null)
@@ -111,7 +109,7 @@ class BinaryTree {
 
 	size() {	
 		var nood = this.root;
-		if(nood == null)
+		if(nood === null)
 			return 0;
 		return this.childrenSize(nood)+1;
 	}
